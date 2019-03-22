@@ -4,13 +4,15 @@
   "description": "",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
-  "scripts": {
-  },
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@types/node": "^8.0.28"
+    "@types/node": "^8.0.28",
+    "prettier": "^1.16.4",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5"
   },
   "devDependencies": {
     "typescript": "~3.0.0"

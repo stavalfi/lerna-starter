@@ -1,6 +1,8 @@
-import { awesomeFn } from "@quramy/x-core";
+import { awesomeFn } from '@quramy/x-core'
 
 export function cli() {
-  awesomeFn(1);
-  return Promise.resolve(true);
+  awesomeFn(123)
+  return Promise.resolve(true)
 }
+
+cli();
