@@ -2,10 +2,8 @@
   "name": "@quramy/x-cli",
   "version": "1.0.0",
   "description": "",
-  "main": "lib/main.js",
-  "scripts": {
-    "test": "ava"
-  },
+  "main": "lib/index.js",
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "MIT",
@@ -15,12 +13,6 @@
     "minimist": "^1.2.0"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
     "typescript": "~3.0.0"
-  },
-  "ava": {
-    "files": [
-      "lib/**/*.spec.js"
-    ]
   }
 }
