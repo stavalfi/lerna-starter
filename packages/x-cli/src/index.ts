@@ -5,4 +5,4 @@ export function cli() {
   return Promise.resolve(true)
 }
 
-cli();
+cli()
