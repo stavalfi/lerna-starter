@@ -2,14 +2,14 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "tsc -b packages/x-core",
+    "build": "tsc -b packages/x-core/index",
     "test": "lerna run test",
     "clean": "rimraf packages/**/dist"
   },
   "devDependencies": {
-    "@types/node": "^8.0.28",
+    "@types/node": "^12.0.0",
     "eslint": "^5.15.3",
-    "lerna": "^2.9.0",
+    "lerna": "^3.13.4",
     "prettier": "^1.16.4",
     "rimraf": "^2.6.2",
     "typescript": "^3.3.4000"

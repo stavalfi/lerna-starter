@@ -1,6 +1,3 @@
 {
-    "references": [
-        { "path": "x-cli" },
-        { "path": "x-core" }
-    ]
+  "references": [{ "path": "x-cli" }, { "path": "x-core" }]
 }

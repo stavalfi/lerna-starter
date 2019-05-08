@@ -6,5 +6,8 @@
     "declarationDir": "dist",
     "rootDir": "src",
     "outDir": "dist"
-  }
+  },
+  "exclude": [
+    "webpack.config.js"
+  ]
 }
