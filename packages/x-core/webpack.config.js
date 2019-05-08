@@ -7,23 +7,16 @@ const distPath = path.resolve(rootPath, 'dist')
 
 module.exports = {
   entry: {
-    app: [path.resolve(srcPath, 'index.js')],
+    index: [path.resolve(srcPath, 'index.js')],
   },
 
   output: {
     path: distPath,
-    filename: 'x-core.js',
-  },
-
-  module: {
-    rules: [
-      {
-        test: /\.(ts|js)x?$/,
-        exclude: /(node_module|dist)/,
-        use: ['babel-loader'],
-      },
-    ],
+    filename: '[name].js',
+    libraryTarget: 'umd',
   },
 
   plugins: [new CleanWebpackPlugin()],
+
+  devtool: 'source-map',
 }

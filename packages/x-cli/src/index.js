@@ -1,7 +1,6 @@
-import { awesomeFn } from '@quramy/x-core'
-
-export function cli() {
-  console.log(awesomeFn)
+import awesomeFn from '@stav/x-core'
+function cli() {
+  console.log('awesomeFn', awesomeFn)
   awesomeFn(123)
   return Promise.resolve(true)
 }

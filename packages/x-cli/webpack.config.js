@@ -8,7 +8,7 @@ const distPath = path.resolve(rootPath, 'dist')
 
 module.exports = {
   entry: {
-    app: [path.resolve(srcPath, 'index.js')],
+    'x-cli': [path.resolve(srcPath, 'index.js')],
   },
 
   output: {
@@ -37,4 +37,6 @@ module.exports = {
     host: 'localhost',
     port: 8082,
   },
+
+  devtool: 'source-map',
 }
