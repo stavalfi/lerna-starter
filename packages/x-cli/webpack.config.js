@@ -8,12 +8,12 @@ const distPath = path.resolve(rootPath, 'dist')
 
 module.exports = {
   entry: {
-    'x-cli': [path.resolve(srcPath, 'index.js')],
+    index: [path.resolve(srcPath, 'index.ts')],
   },
 
   output: {
     path: distPath,
-    filename: 'x-cli.js',
+    filename: '[name].js',
   },
 
   module: {
@@ -21,7 +21,7 @@ module.exports = {
       {
         test: /\.(ts|js)x?$/,
         exclude: /(node_module|dist)/,
-        use: ['babel-loader'],
+        use: ['babel-loader', 'ts-loader'],
       },
     ],
   },

@@ -2,7 +2,7 @@
   "name": "@stav/x-cli",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/x-cli.js",
+  "main": "dist/index.html",
   "scripts": {
     "start:dev": "webpack-dev-server --mode development",
     "build:prod": "webpack --mode production",

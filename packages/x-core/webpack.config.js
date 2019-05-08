@@ -7,7 +7,7 @@ const distPath = path.resolve(rootPath, 'dist')
 
 module.exports = {
   entry: {
-    index: [path.resolve(srcPath, 'index.js')],
+    index: [path.resolve(srcPath, 'index.ts')],
   },
 
   output: {
@@ -19,4 +19,14 @@ module.exports = {
   plugins: [new CleanWebpackPlugin()],
 
   devtool: 'source-map',
+
+  module: {
+    rules: [
+      {
+        test: /\.(ts|js)x?$/,
+        exclude: /(node_module|dist)/,
+        use: ['babel-loader', 'ts-loader'],
+      },
+    ],
+  },
 }
