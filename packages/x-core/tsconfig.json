@@ -5,9 +5,8 @@
     "declarationMap": true,
     "declarationDir": "dist",
     "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "baseUrl": "src"
   },
-  "exclude": [
-    "webpack.config.js"
-  ]
+  "exclude": ["webpack.config.js"]
 }

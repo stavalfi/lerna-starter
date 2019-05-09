@@ -1,32 +1,56 @@
 const path = require('path')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 const rootPath = path.resolve(__dirname)
-const srcPath = path.resolve(rootPath, 'src')
-const distPath = path.resolve(rootPath, 'dist')
+const currentProjectPaths = {
+  src: path.resolve(rootPath, 'src'),
+  components: path.resolve(rootPath, 'src', 'components'),
+  nodeModules: path.resolve(rootPath, 'node_modules'),
+  dist: path.resolve(rootPath, 'dist'),
+}
 
-module.exports = {
-  entry: {
-    index: [path.resolve(srcPath, 'index.ts')],
-  },
+module.exports = (env, argv) => {
+  const isDevelopment = argv.mode === 'development'
+  return {
+    devtool: 'source-map',
 
-  output: {
-    path: distPath,
-    filename: '[name].js',
-    libraryTarget: 'umd',
-  },
+    entry: {
+      index: [path.resolve(currentProjectPaths.src, 'index.ts')],
+    },
 
-  plugins: [new CleanWebpackPlugin()],
+    output: {
+      path: currentProjectPaths.dist,
+      filename: '[name].js',
+      libraryTarget: 'umd',
+    },
 
-  devtool: 'source-map',
+    resolve: {
+      extensions: ['.js', '.sass', '.json', '.ts', '.tsx'],
+      modules: [currentProjectPaths.nodeModules, currentProjectPaths.src],
+    },
 
-  module: {
-    rules: [
-      {
-        test: /\.(ts|js)x?$/,
-        exclude: /(node_module|dist)/,
-        use: ['babel-loader', 'ts-loader'],
-      },
-    ],
-  },
+    plugins: [new CleanWebpackPlugin(), new ForkTsCheckerWebpackPlugin()],
+
+    module: {
+      rules: [
+        {
+          test: /\.(ts|js)x?$/,
+          exclude: /(node_module|dist)/,
+          use: [
+            'babel-loader',
+            'ts-loader',
+            {
+              loader: 'eslint-loader',
+              options: {
+                failOnError: true,
+                failOnWarning: true,
+                configFile: path.join(rootPath, '.eslintrc'),
+              },
+            },
+          ],
+        },
+      ],
+    },
+  }
 }
