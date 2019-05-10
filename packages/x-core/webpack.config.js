@@ -1,56 +1,23 @@
-const path = require('path')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
-
-const rootPath = path.resolve(__dirname)
-const currentProjectPaths = {
-  src: path.resolve(rootPath, 'src'),
-  components: path.resolve(rootPath, 'src', 'components'),
-  nodeModules: path.resolve(rootPath, 'node_modules'),
-  dist: path.resolve(rootPath, 'dist'),
-}
+const { getPlugins, getModule, getResolve } = require('./webpack/webpack-config-functions')
+const { distPath, appEntryFilePath } = require('./paths')
 
 module.exports = (env, argv) => {
-  const isDevelopment = argv.mode === 'development'
+  const isDevelopmentMode = argv.mode === 'development'
   return {
-    devtool: 'source-map',
+    devtool: isDevelopmentMode ? 'source-map' : 'none',
 
     entry: {
-      index: [path.resolve(currentProjectPaths.src, 'index.ts')],
+      index: [appEntryFilePath],
     },
 
     output: {
-      path: currentProjectPaths.dist,
-      filename: '[name].js',
+      path: distPath,
+      filename: '[contenthash].js',
       libraryTarget: 'umd',
     },
 
-    resolve: {
-      extensions: ['.js', '.sass', '.json', '.ts', '.tsx'],
-      modules: [currentProjectPaths.nodeModules, currentProjectPaths.src],
-    },
-
-    plugins: [new CleanWebpackPlugin(), new ForkTsCheckerWebpackPlugin()],
-
-    module: {
-      rules: [
-        {
-          test: /\.(ts|js)x?$/,
-          exclude: /(node_module|dist)/,
-          use: [
-            'babel-loader',
-            'ts-loader',
-            {
-              loader: 'eslint-loader',
-              options: {
-                failOnError: true,
-                failOnWarning: true,
-                configFile: path.join(rootPath, '.eslintrc'),
-              },
-            },
-          ],
-        },
-      ],
-    },
+    resolve: getResolve(),
+    plugins: getPlugins(),
+    module: getModule({ isDevelopmentMode, isTestMode: false }),
   }
 }
