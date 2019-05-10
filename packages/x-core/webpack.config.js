@@ -3,6 +3,7 @@ const { distPath, appEntryFilePath } = require('./paths')
 
 module.exports = (env, argv) => {
   const isDevelopmentMode = argv.mode === 'development'
+  const publicPath = '.'
   return {
     devtool: isDevelopmentMode ? 'source-map' : 'none',
 
@@ -12,12 +13,13 @@ module.exports = (env, argv) => {
 
     output: {
       path: distPath,
-      filename: '[contenthash].js',
+      filename: '[name].js',
       libraryTarget: 'umd',
+      publicPath,
     },
 
-    resolve: getResolve(),
-    plugins: getPlugins(),
-    module: getModule({ isDevelopmentMode, isTestMode: false }),
+    resolve: getResolve({ isDevelopmentMode }),
+    plugins: getPlugins({ isDevelopmentMode }),
+    module: getModule({ isDevelopmentMode, isTestMode: false, publicPath }),
   }
 }

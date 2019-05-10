@@ -1,41 +1,28 @@
-const { nodeModulesPath, srcPath, eslintRcPath, mainNodeModulesPath } = require('../paths')
-
+const { nodeModulesPath, srcPath, mainNodeModulesPath } = require('../paths')
+const moduleRules = require('./module-rules')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
-  getModule: ({ isDevelopmentMode, isTestMode }) => {
-    return {
-      rules: [
-        {
-          test: /\.(ts|js)x?$/,
-          exclude: /(node_module|dist)/,
-          use: [
-            'babel-loader',
-            {
-              loader: 'ts-loader',
-              options: {
-                compilerOptions: {
-                  declarationMap: !isTestMode,
-                },
-              },
-            },
-            {
-              loader: 'eslint-loader',
-              options: {
-                failOnError: true,
-                failOnWarning: isDevelopmentMode || isTestMode,
-                configFile: eslintRcPath,
-              },
-            },
-          ],
-        },
-      ],
-    }
-  },
+  getModule: ({ isDevelopmentMode, isTestMode, publicPath = '.' }) => ({
+    rules: moduleRules({ isDevelopmentMode, isTestMode, publicPath }),
+  }),
   getResolve: () => ({
     extensions: ['.js', '.sass', '.json', '.ts', '.tsx'],
     modules: [nodeModulesPath, srcPath, mainNodeModulesPath],
   }),
-  getPlugins: () => [new CleanWebpackPlugin(), new ForkTsCheckerWebpackPlugin()],
+  getPlugins: ({ isDevelopmentMode }) => {
+    const productionPlugins = []
+    const developmentPlugins = [
+      new MiniCssExtractPlugin({
+        filename: '[chunkhash].css',
+      }),
+    ]
+    return [
+      new CleanWebpackPlugin(),
+      new ForkTsCheckerWebpackPlugin(),
+      ...(isDevelopmentMode ? developmentPlugins : productionPlugins),
+    ]
+  },
 }

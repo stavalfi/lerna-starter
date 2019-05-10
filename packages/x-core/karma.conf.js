@@ -15,7 +15,7 @@ module.exports = config => {
       devtool: 'inline-source-map',
       module: getModule({ isDevelopmentMode: true, isTestMode: true }),
       resolve: getResolve(),
-      plugins: getPlugins(),
+      plugins: getPlugins({isDevelopmentMode:true}),
     },
     webpackMiddleware: {
       noInfo: true,
