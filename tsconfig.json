@@ -3,14 +3,17 @@
     "moduleResolution": "node",
     "target": "es2017",
     "jsx": "react",
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
     "strict": true,
-    "composite": true,
     "esModuleInterop": true,
-    "checkJs": false
+    "incremental": true
   },
   "exclude": ["node_modules"],
-  "references": [{ "path": "x-cli" }, { "path": "x-core" }]
+  "references": [
+    {
+      "path": "packages/consumer"
+    },
+    {
+      "path": "packages/library1"
+    }
+  ]
 }

@@ -1,8 +1,8 @@
-const { nodeModulesPath, srcPath, mainNodeModulesPath } = require('../paths')
 const moduleRules = require('./module-rules')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const { resolveModulesPathsArray } = require('../paths')
 
 module.exports = {
   getModule: ({ isDevelopmentMode, isTestMode, publicPath = '.' }) => ({
@@ -10,7 +10,7 @@ module.exports = {
   }),
   getResolve: () => ({
     extensions: ['.js', '.sass', '.json', '.ts', '.tsx'],
-    modules: [nodeModulesPath, srcPath, mainNodeModulesPath],
+    modules: resolveModulesPathsArray,
   }),
   getPlugins: ({ isDevelopmentMode }) => {
     const productionPlugins = []
@@ -20,9 +20,9 @@ module.exports = {
       }),
     ]
     return [
-      new CleanWebpackPlugin(),
       new ForkTsCheckerWebpackPlugin(),
       ...(isDevelopmentMode ? developmentPlugins : productionPlugins),
+      new CleanWebpackPlugin(),
     ]
   },
 }

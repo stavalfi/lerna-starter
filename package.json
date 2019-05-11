@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "install": "lerna exec -- yarn",
     "bootstrap": "lerna bootstrap"
   },
   "devDependencies": {

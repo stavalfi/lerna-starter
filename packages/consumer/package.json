@@ -1,11 +1,10 @@
 {
-  "name": "@stav/x-core",
+  "name": "@stavalfi/consumer",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "dist/index.html",
   "scripts": {
-    "start:dev": "webpack --mode development --watch",
+    "start:dev": "webpack-dev-server --mode development",
     "build:prod": "webpack --mode production",
     "clean": "rm -rf dist",
     "clean:all": "yarn run clean && rm -rf node_modules",
@@ -17,7 +16,9 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "@stavalfi/library1": "^1.0.0"
+  },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.4",
@@ -50,6 +51,7 @@
     "@typescript-eslint/parser": "^1.7.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
+    "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-react-require": "^3.1.1",
     "chai": "^4.2.0",
     "clean-webpack-plugin": "^2.0.2",
@@ -86,8 +88,7 @@
     "style-loader": "^0.23.1",
     "ts-loader": "^6.0.0",
     "ts-node": "^8.1.0",
-    "tsconfig-paths": "^3.8.0",
-    "typescript": "^3.4.5",
+    "typescript": "^3.4.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.31.0",
     "webpack-cli": "^3.3.2",

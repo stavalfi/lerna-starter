@@ -15,7 +15,6 @@ module.exports = (env, argv) => {
       path: distPath,
       filename: '[name].js',
       libraryTarget: 'umd',
-      publicPath,
     },
 
     resolve: getResolve({ isDevelopmentMode }),

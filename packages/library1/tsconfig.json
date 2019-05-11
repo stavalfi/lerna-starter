@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "src",
+    "allowJs": false,
+    "checkJs": false,
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "dist",
+    "noImplicitAny": true
+  },
+  "exclude": ["dist", "node_modules", "../../node_modules"]
+}
