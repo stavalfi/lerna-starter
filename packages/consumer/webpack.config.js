@@ -4,7 +4,7 @@ const { getPlugins, getModule, getResolve } = require('./webpack/webpack-config-
 const { distPath, appEntryFilePath } = require('./paths')
 
 module.exports = (env, argv) => {
-  const isDevelopmentMode = argv.mode === 'development'
+  const isDevelopmentMode = argv.mode === 'development' || (env || {}).devServer
   const publicPath = '/'
   return {
     devtool: isDevelopmentMode ? 'source-map' : 'none',
@@ -15,7 +15,7 @@ module.exports = (env, argv) => {
 
     output: {
       path: distPath,
-      filename: '[contenthash].js',
+      filename: '[hash].js',
       publicPath,
     },
 
