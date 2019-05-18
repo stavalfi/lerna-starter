@@ -15,6 +15,7 @@
     ]
   ],
   "plugins": [
+    "react-hot-loader/babel",
     "@babel/proposal-object-rest-spread",
     [
       "@babel/plugin-proposal-decorators",

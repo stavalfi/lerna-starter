@@ -1,13 +1,23 @@
 # A Full-Featured Lerna Starter
 
+[![CircleCI](https://circleci.com/gh/stavalfi/lerna-starter/tree/master.svg?style=svg)](https://circleci.com/gh/stavalfi/lerna-starter/tree/master)
+
+
+##### Main devDependencies
+
 - Lerna 3.6 
 - yarn workspaces
 - Webpack 4
 - Babel 7.4
 - Typescript 3.4
 - karma 4
+- Eslint with Typescript
+- Prettier
 
-[![CircleCI](https://circleci.com/gh/stavalfi/lerna-starter/tree/master.svg?style=svg)](https://circleci.com/gh/stavalfi/lerna-starter/tree/master)
+##### Main dependencies
+
+- React
+- React-hot-loader
 
 ----
 
