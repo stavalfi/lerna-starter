@@ -7,6 +7,8 @@
 - Typescript 3.4
 - karma 4
 
+[![CircleCI](https://circleci.com/gh/stavalfi/lerna-starter/tree/master.svg?style=svg)](https://circleci.com/gh/stavalfi/lerna-starter/tree/master)
+
 ----
 
 Projects:
