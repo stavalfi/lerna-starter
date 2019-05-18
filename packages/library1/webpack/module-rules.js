@@ -1,7 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const jsonImporter = require('node-sass-json-importer')
 const { resolveModulesPathsArray, eslintRcPath } = require('../paths')
-const path = require('path')
 
 module.exports = ({ isDevelopmentMode, isTestMode, publicPath = '.' }) => {
   return [
