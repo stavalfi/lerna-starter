@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "install-and-link": "yarn && lerna bootstrap"
+    "install-and-link": "yarn && lerna bootstrap",
+    "test": "lerna run test",
+    "clean": "lerna run clean",
+    "lint": "lerna run lint",
+    "build": "lerna run build:prod",
+    "prepublish": "yarn run clean && yarn run lint && yarn run test && yarn run build"
   },
   "devDependencies": {
     "lerna": "^3.6.0",
