@@ -1,8 +1,9 @@
 {
+  "name": "@stavalfi/lerna-starter",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "install": "lerna exec -- yarn",
-    "bootstrap": "lerna bootstrap"
+    "install-and-link": "yarn && lerna bootstrap"
   },
   "devDependencies": {
     "lerna": "^3.6.0",
@@ -10,5 +11,33 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "description": "a full-featured lerna starter",
+  "keywords": [
+    "lerna",
+    "webpack",
+    "yarn",
+    "workspaces",
+    "babel",
+    "test",
+    "monorepo",
+    "karma",
+    "prettier",
+    "eslint",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stavalfi/lerna-yarn-workspaces-example.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stavalfi/lerna-yarn-workspaces-example/issues"
+  },
+  "homepage": "https://github.com/stavalfi/lerna-yarn-workspaces-example#readme",
+  "author": {
+    "name": "Stav Alfi",
+    "email": "stavalfi@gmail.com",
+    "url": "https://github.com/stavalfi"
+  },
+  "license": "MIT"
 }

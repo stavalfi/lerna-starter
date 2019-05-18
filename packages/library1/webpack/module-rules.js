@@ -15,16 +15,20 @@ module.exports = ({ isDevelopmentMode, isTestMode, publicPath = '.' }) => {
             cacheDirectory: true,
           },
         },
-        {
-          loader: 'ts-loader',
-        },
-        {
-          loader: '@stavalfi/babel-plugin-module-resolver-loader',
-          options: {
-            root: resolveModulesPathsArray,
-            extensions: ['.js', '.jsx', '.d.ts', '.ts', '.tsx'],
-          },
-        },
+        ...(isTestMode
+          ? []
+          : [
+              {
+                loader: 'ts-loader',
+              },
+              {
+                loader: '@stavalfi/babel-plugin-module-resolver-loader',
+                options: {
+                  root: resolveModulesPathsArray,
+                  extensions: ['.js', '.jsx', '.d.ts', '.ts', '.tsx'],
+                },
+              },
+            ]),
         {
           loader: 'eslint-loader',
           options: {

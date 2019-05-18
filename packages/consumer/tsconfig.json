@@ -8,6 +8,6 @@
     "allowJs": false,
     "checkJs": false
   },
-  "exclude": ["dist", "node_modules", "../../node_modules"],
-  "references": [{ "path": "../library1"}]
+  "exclude": ["dist", "node_modules", "../../node_modules", "**/*.spec.ts"],
+  "references": [{ "path": "../library1" }]
 }
