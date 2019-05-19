@@ -1,3 +1,12 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 
-export default () => <div>456ssss7890dd</div>
+const OtherComponent = lazy(() => import('Home2'))
+
+export default () => (
+  <div onClick={() => import('module1').then(x => console.log('dynamic import: ', x))}>
+    dddddd
+    <Suspense fallback={<div>Loading...</div>}>
+      <OtherComponent />
+    </Suspense>
+  </div>
+)
