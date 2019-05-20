@@ -1,6 +1,3 @@
-export { r1 } from 'bobo'
+import { t, P1 } from 'Home'
 
-const x: number = 1
-console.log(x)
-
-export type f = (x: number) => string
+export { t, P1 }

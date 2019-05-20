@@ -1,6 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const jsonImporter = require('node-sass-json-importer')
-const { resolveModulesPathsArray, eslintRcPath } = require('../paths')
+const { srcPath, eslintRcPath } = require('../paths')
 
 module.exports = ({ isDevelopmentMode, isTestMode, publicPath = '.' }) => {
   return [
@@ -23,7 +23,7 @@ module.exports = ({ isDevelopmentMode, isTestMode, publicPath = '.' }) => {
               {
                 loader: '@stavalfi/babel-plugin-module-resolver-loader',
                 options: {
-                  root: resolveModulesPathsArray,
+                  root: [srcPath],
                   extensions: ['.js', '.jsx', '.d.ts', '.ts', '.tsx'],
                 },
               },
