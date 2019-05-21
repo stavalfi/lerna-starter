@@ -17,6 +17,13 @@ module.exports = (env, argv) => {
       libraryTarget: 'umd',
     },
 
+    externals: {
+      lodash: 'lodash',
+      react: 'React',
+      'react-dom': 'ReactDOM',
+      'react-router': 'ReactRouter',
+    },
+
     resolve: getResolve({ isDevelopmentMode }),
     plugins: getPlugins({ isDevelopmentMode }),
     module: getModule({ isDevelopmentMode, isTestMode: false, publicPath }),
