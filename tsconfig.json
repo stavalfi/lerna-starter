@@ -5,7 +5,8 @@
     "jsx": "react",
     "strict": true,
     "esModuleInterop": true,
-    "incremental": true
+    "incremental": true,
+    "lib": ["esnext"]
   },
   "exclude": ["node_modules"],
   "references": [

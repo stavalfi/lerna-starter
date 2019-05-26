@@ -1,5 +1,5 @@
 {
-  "name": "@stavalfi/lerna-starter",
+  "name": "@flow/main",
   "version": "1.0.0",
   "private": true,
   "scripts": {
