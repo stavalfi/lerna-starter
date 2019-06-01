@@ -7,5 +7,5 @@ module.exports = {
   externals,
   moduleWithRules,
   resolve,
-  plugins
+  plugins,
 }

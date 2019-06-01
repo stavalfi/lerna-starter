@@ -1,17 +1,7 @@
 import { parse } from 'index'
 import { distractDisplayNameBySplitters, graphNodeToDisplayName } from 'utils'
 import { table } from 'table'
-import {
-  Graph,
-  Node,
-  Omit,
-  ParsedFlow,
-  Path,
-  Splitters,
-  UserConfiguration,
-  UserConfigurationObject,
-  UserFlow,
-} from 'types'
+import { Graph, Node, Omit, ParsedFlow, Path, Splitters, UserConfigurationObject } from 'types'
 import { expect } from 'chai'
 
 type ExpectedFlowGraphNode = { [key1: string]: [number[], number[]] }

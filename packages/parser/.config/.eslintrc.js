@@ -1,5 +1,3 @@
-const { webpackConfigPath } = require('./paths')
-
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -18,7 +16,7 @@ module.exports = {
     node: true,
     mocha: true,
   },
-  plugins: ['react', 'react-hooks', '@typescript-eslint'],
+  plugins: ['react', 'react-hooks', '@typescript-eslint', 'json'],
   extends: ['eslint:recommended', 'prettier'],
   globals: {},
   rules: {

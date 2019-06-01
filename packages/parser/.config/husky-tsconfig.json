@@ -1,0 +1,17 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": ["../src/*", "../test/*", "../node_modules/*", "../../../node_modules/*"]
+    },
+    "allowJs": false,
+    "checkJs": false,
+    "composite": true,
+    "noImplicitAny": true,
+    "noEmit": true,
+    "listFiles": true
+  },
+  "include": ["../src/**/*", "../test/**/*"],
+  "exclude": ["../dist", "../node_modules", "../../../node_modules"]
+}
