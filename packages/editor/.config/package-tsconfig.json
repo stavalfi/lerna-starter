@@ -8,11 +8,11 @@
     "rootDir": "../src",
     "allowJs": false,
     "checkJs": false,
-    "composite": true,
-    "declaration": true,
-    "declarationMap": true,
-    "declarationDir": "../dist",
-    "noImplicitAny": true
+    "composite": false,
+    "declaration": false,
+    "declarationMap": false,
+    "noImplicitAny": true,
+    "noEmit": true
   },
   "include": ["../src"],
   "exclude": ["../dist", "../node_modules", "../../../node_modules", "../test", "../**/*.spec.ts"]

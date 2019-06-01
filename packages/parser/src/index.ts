@@ -1,6 +1,8 @@
 import { parseMultipleFlows } from 'flows-parser'
 import { ParsedFlow, Splitters, UserConfiguration, UserFlow, UserFlowObject } from 'types'
 
+export { graphNodeToDisplayName } from 'utils'
+
 type Parse = (
   userConfiguration: UserConfiguration,
 ) => {

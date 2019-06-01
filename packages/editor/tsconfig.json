@@ -1,4 +1,4 @@
-// for IDE - I can't tell him to use different settings for tests/dev enviroments
+// for tslint and IDE - (IDE reason:) I can't tell him to use different settings for tests/dev enviroments
 // so i will have to create 2 different tsconfig.json files.
 // in webpack, i will link to ./.config/main-tsconfig.json file. (never to this file)
 {
@@ -10,7 +10,7 @@
     },
     "allowJs": false,
     "checkJs": false,
-    "composite": true,
+    "composite": false,
     "noImplicitAny": true,
     "noEmit": true,
     "listFiles": true
