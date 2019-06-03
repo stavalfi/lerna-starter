@@ -1,8 +1,12 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const jsonImporter = require('node-sass-json-importer')
-const { srcPath, eslintRcPath, packageTsconfigPath, babelRcPath } = require('../paths')
 
-module.exports = ({ isDevelopmentMode, isTestMode, publicPath = '.' }) => ({
+module.exports = ({
+  isDevelopmentMode,
+  isTestMode,
+  publicPath = '.',
+  paths: { srcPath, eslintRcPath, prodTsconfigPath, babelRcPath },
+}) => ({
   rules: [
     {
       test: /\.(ts|js)x?$/,
@@ -21,7 +25,7 @@ module.exports = ({ isDevelopmentMode, isTestMode, publicPath = '.' }) => ({
               {
                 loader: 'ts-loader',
                 options: {
-                  configFile: packageTsconfigPath,
+                  configFile: prodTsconfigPath,
                 },
               },
               {

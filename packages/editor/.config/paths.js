@@ -4,7 +4,7 @@ const rootPath = path.resolve(__dirname, '..')
 const configFolderPath = path.resolve(rootPath, '.config')
 const webpackConfigPath = path.resolve(configFolderPath, 'webpack', 'webpack.config.js')
 const indexHtmlPath = path.resolve(configFolderPath, 'webpack', 'index.html')
-const packageTsconfigPath = path.resolve(configFolderPath, 'package-tsconfig.json')
+const prodTsconfigPath = path.resolve(configFolderPath, 'package-tsconfig.json')
 const mainNodeModulesPath = path.resolve(rootPath, '..', '..', 'node_modules')
 const srcPath = path.resolve(rootPath, 'src')
 const appEntryFilePath = path.resolve(srcPath, 'index.tsx')
@@ -22,7 +22,7 @@ module.exports = {
   rootPath,
   webpackConfigPath,
   indexHtmlPath,
-  packageTsconfigPath,
+  prodTsconfigPath,
   srcPath,
   babelRcPath,
   nodeModulesPath,

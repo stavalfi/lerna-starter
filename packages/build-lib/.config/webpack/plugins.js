@@ -2,8 +2,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
-const { packageTsconfigPath } = require('../paths')
-module.exports = ({ isDevelopmentMode }) => {
+module.exports = ({ isDevelopmentMode, paths: { prodTsconfigPath } }) => {
   const productionPlugins = [
     new MiniCssExtractPlugin({
       filename: '[chunkhash].css',
@@ -13,7 +12,7 @@ module.exports = ({ isDevelopmentMode }) => {
   return [
     new FriendlyErrorsWebpackPlugin(),
     new ForkTsCheckerWebpackPlugin({
-      tsconfig: packageTsconfigPath,
+      tsconfig: prodTsconfigPath,
       async: false,
     }),
     ...(isDevelopmentMode ? developmentPlugins : productionPlugins),

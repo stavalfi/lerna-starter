@@ -3,7 +3,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { indexHtmlPath, packageTsconfigPath } = require('../paths')
+const { indexHtmlPath, prodTsconfigPath } = require('../paths')
 
 module.exports = ({ isDevelopmentMode }) => {
   const productionPlugins = [
@@ -18,7 +18,7 @@ module.exports = ({ isDevelopmentMode }) => {
     }),
     new FriendlyErrorsWebpackPlugin(),
     new ForkTsCheckerWebpackPlugin({
-      tsconfig: packageTsconfigPath,
+      tsconfig: prodTsconfigPath,
       async: false,
     }),
     ...(isDevelopmentMode ? developmentPlugins : productionPlugins),

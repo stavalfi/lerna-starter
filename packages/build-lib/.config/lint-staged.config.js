@@ -1,4 +1,6 @@
-const { eslintRcPath } = require('./paths')
+const generatePaths = require('./generate-paths')
+
+const { eslintRcPath } = generatePaths({ packageJsonFolderPath: process.env.INIT_CWD })
 
 module.exports = {
   linters: {

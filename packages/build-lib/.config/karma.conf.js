@@ -1,5 +1,8 @@
 const { moduleWithRules, resolve, plugins } = require('./webpack')
-const { testsPath } = require('./paths')
+const generatePaths = require('./generate-paths')
+
+const paths = generatePaths({ packageJsonFolderPath: process.env.INIT_CWD })
+const { testsPath } = paths
 
 module.exports = config => {
   const files = [
@@ -19,9 +22,9 @@ module.exports = config => {
     webpack: {
       mode: 'development',
       devtool: 'inline-source-map',
-      module: moduleWithRules({ isDevelopmentMode: true, isTestMode: true }),
-      resolve: resolve({ isDevelopmentMode: true, isTestMode: true }),
-      plugins: plugins({ isDevelopmentMode: true, isTestMode: true }),
+      module: moduleWithRules({ isDevelopmentMode: true, isTestMode: true, paths }),
+      resolve: resolve({ isDevelopmentMode: true, isTestMode: true, paths }),
+      plugins: plugins({ isDevelopmentMode: true, isTestMode: true, paths }),
     },
     webpackMiddleware: {
       noInfo: true,
