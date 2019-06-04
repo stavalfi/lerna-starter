@@ -5,15 +5,16 @@
     "jsx": "react",
     "strict": true,
     "esModuleInterop": true,
-    "incremental": true
+    "incremental": true,
+    "lib": ["esnext"]
   },
   "exclude": ["node_modules"],
   "references": [
     {
-      "path": "packages/consumer"
+      "path": "packages/parser"
     },
     {
-      "path": "packages/library1"
+      "path": "packages/editor"
     }
   ]
 }
