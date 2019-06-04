@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-// @ts-ignore
-import Home from './home'
+import App from 'app'
 
 // @ts-ignore
-ReactDOM.render(<Home />, document.getElementById('app'))
+ReactDOM.render(<App />, document.getElementById('app'))

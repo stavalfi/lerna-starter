@@ -27,7 +27,6 @@ export default class FlowsEditor extends React.Component {
       const json = stringToObject(newConfig)
       const configObject = parse(json)
       return this.setState({ config: newConfig, error: false }, () => {
-        console.log('configuration: ', configObject)
         this.props.onConfigChange(configObject)
       })
     } catch (e) {

@@ -22,8 +22,8 @@
 
 Projects:
 
-- consumer
-- library1
+- consumer (called "editor")
+- library1 (called "parser")
 
 `consumer` project depends on `library1` project.
 

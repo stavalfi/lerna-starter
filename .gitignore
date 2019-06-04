@@ -69,3 +69,5 @@ lib/
 .DS_Store
 .DS_Store?
 dist/
+.pnp
+.pnp.js
