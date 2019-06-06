@@ -1,21 +1,30 @@
 import React from 'react'
-import DrawFlow from './draw-flow'
-import FlowsEditor from './flows-editor'
+// @ts-ignore
+import DrawFlow from 'draw-flow'
+// @ts-ignore
+import FlowsEditor from 'flows-editor'
+import { ParsedUserConfigurationObject } from '@flow/parser'
 
-export default class Home extends React.Component {
-  constructor(props) {
+interface State {
+  selectedFlowIndex?: number
+  config: ParsedUserConfigurationObject
+}
+
+export default class Home extends React.Component<{}, State> {
+  constructor(props: {}) {
     super(props)
     this.state = {
       config: {
+        // @ts-ignore
         splitters: {},
         flows: [],
       },
     }
   }
 
-  setConfig = config => this.setState({ config })
+  setConfig = (config: ParsedUserConfigurationObject) => this.setState({ config })
 
-  setSelectedFlowIndex = selectedFlowIndex => this.setState({ selectedFlowIndex })
+  setSelectedFlowIndex = (selectedFlowIndex: number) => this.setState({ selectedFlowIndex })
 
   render() {
     return (
@@ -27,7 +36,7 @@ export default class Home extends React.Component {
             config={this.state.config}
             selectedFlowIndex={
               this.state.hasOwnProperty('selectedFlowIndex')
-                ? this.state.selectedFlowIndex
+                ? (this.state.selectedFlowIndex as number)
                 : this.state.config.flows.length - 1
             }
           />

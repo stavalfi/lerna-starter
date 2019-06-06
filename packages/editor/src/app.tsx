@@ -1,7 +1,6 @@
 import React from 'react'
 import { hot } from 'react-hot-loader/root'
-// @ts-ignore
-import Home from 'Home'
+import Home from 'home'
 
 const App: Function = () => (
   <h1>

@@ -1,19 +1,21 @@
 const path = require('path')
+const stringToBoolean = require('boolean')
+
+const isWebApp = stringToBoolean(process.env.WEBAPP || process.env['WEBAPP'])
+const packageDirectoryName = process.env.FOLDER || process.env['FOLDER']
 
 const currentPackageRootPath = path.resolve(__dirname, '..')
-const packagesPath = path.resolve(currentPackageRootPath, '..', '..')
+const packagesPath = path.resolve(currentPackageRootPath, '..')
 const configFolderPath = path.resolve(currentPackageRootPath, '.config')
 
 module.exports = () => {
-  const packageDirectoryName = process.env.FOLDER || process.env['FOLDER']
-  console.log('webapp - packageDirectoryName: ', packageDirectoryName)
   const packageJsonFolderPath = path.resolve(packagesPath, packageDirectoryName)
   const webpackConfigPath = path.resolve(configFolderPath, 'webpack', 'webpack.config.js')
-  const prodTsconfigPath = path.resolve(packageJsonFolderPath, 'prod-tsconfig.json')
+  const libTsconfigPath = path.resolve(configFolderPath, 'lib-tsconfig.json')
   const linterTsconfigPath = path.resolve(packageJsonFolderPath, 'tsconfig.json')
   const mainNodeModulesPath = path.resolve(packageJsonFolderPath, '..', '..', 'node_modules')
   const srcPath = path.resolve(packageJsonFolderPath, 'src')
-  const appEntryFilePath = path.resolve(srcPath, 'index.tsx')
+  const appEntryFilePaths = [path.resolve(srcPath, isWebApp ? 'index.tsx' : 'index.ts')]
   const distPath = path.join(packageJsonFolderPath, 'dist')
   const babelRcPath = path.join(configFolderPath, '.babelrc.js')
   const eslintRcPath = path.join(configFolderPath, '.eslintrc.js')
@@ -26,18 +28,19 @@ module.exports = () => {
   const resolveModulesPathsTestArray = [testsPath, srcPath, nodeModulesPath, mainNodeModulesPath]
 
   return {
+    packagesPath,
     packageJsonFolderPath,
     webpackConfigPath,
-    prodTsconfigPath,
-    linterTsconfigPath,
+    libTsconfigPath,
     srcPath,
     babelRcPath,
     nodeModulesPath,
+    linterTsconfigPath,
     mainNodeModulesPath,
     eslintRcPath,
     eslintIgnorePath,
     distPath,
-    appEntryFilePath,
+    appEntryFilePaths,
     resolveModulesPathsArray,
     resolveModulesPathsTestArray,
     testsPath,

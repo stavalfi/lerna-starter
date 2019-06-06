@@ -1,8 +1,6 @@
 import { parseMultipleFlows } from 'flows-parser'
 import { ParsedFlow, Splitters, UserConfiguration, UserFlow, UserFlowObject } from 'types'
 
-export { graphNodeToDisplayName } from 'utils'
-
 type Parse = (
   userConfiguration: UserConfiguration,
 ) => {
@@ -80,3 +78,6 @@ const initializeConfig: InitializeConfig = config => {
     flows: [],
   }
 }
+
+export { graphNodeToDisplayName } from 'utils'
+export { UserConfigurationObject, ParsedUserConfigurationObject } from 'types'

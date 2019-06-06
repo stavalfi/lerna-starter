@@ -7,13 +7,13 @@
   "scripts": {
     "build:dev": "yarn run exec build:dev",
     "build:prod": "yarn run exec build:prod",
-    "clean": "rm -rf dist",
-    "clean:all": "yarn run clean && rm -rf node_modules",
     "test": "yarn run exec test",
     "test:unit": "yarn run exec test:unit",
     "test:watch": "yarn run exec test:watch",
     "lint-staged": "pkg-ok && yarn run exec lint-staged",
-    "exec": "FOLDER=parser yarn workspace @flow/build-library"
+    "clean": "rm -rf dist",
+    "clean:all": "yarn run clean && rm -rf node_modules",
+    "exec": "WEBAPP=false FOLDER=parser yarn workspace @flow/build"
   },
   "keywords": [],
   "author": "",
@@ -26,5 +26,8 @@
     "is-promise": "^2.1.0",
     "lodash": "^4.17.11",
     "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "pkg-ok": "^2.3.1"
   }
 }
