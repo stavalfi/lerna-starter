@@ -1,4 +1,3 @@
-// is used for dev and prod builds to produce d.ts files.
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {

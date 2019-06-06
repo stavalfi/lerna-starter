@@ -4,8 +4,9 @@ const jsonImporter = require('node-sass-json-importer')
 module.exports = ({
   isDevelopmentMode,
   isTestMode,
+  isWebApp,
   publicPath = '.',
-  paths: { srcPath, eslintRcPath, prodTsconfigPath, babelRcPath, packageJsonFolderPath },
+  paths: { srcPath, eslintRcPath, libTsconfigPath, babelRcPath, packageJsonFolderPath },
 }) => {
   return {
     rules: [
@@ -20,14 +21,14 @@ module.exports = ({
               ...require(babelRcPath),
             },
           },
-          ...(isTestMode
+          ...(isWebApp || isTestMode
             ? []
             : [
                 {
                   loader: 'ts-loader',
                   options: {
                     context: packageJsonFolderPath,
-                    configFile: prodTsconfigPath,
+                    configFile: libTsconfigPath,
                     experimentalFileCaching: true,
                   },
                 },
@@ -115,6 +116,7 @@ module.exports = ({
       },
       {
         test: /\.(scss|sass)$/,
+        exclude: /(node_modules)/,
         use: [
           'style-loader',
           'css-loader',
@@ -126,7 +128,6 @@ module.exports = ({
             },
           },
         ],
-        exclude: /(node_modules)/,
       },
     ],
   }

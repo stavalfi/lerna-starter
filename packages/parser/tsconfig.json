@@ -9,7 +9,7 @@
     "paths": {
       "*": ["src/*", "test/*", "node_modules/*", "../../node_modules/*"]
     },
-    "allowJs": false,
+    "allowJs": true,
     "checkJs": false,
     "composite": false,
     "noImplicitAny": true,

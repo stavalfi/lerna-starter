@@ -59,4 +59,6 @@ export type UserConfigurationObject = {
   flows: UserFlow[]
 }
 
+export type ParsedUserConfigurationObject = Required<UserConfigurationObject>
+
 export type UserConfiguration = UserFlow | UserFlow[] | UserConfigurationObject
