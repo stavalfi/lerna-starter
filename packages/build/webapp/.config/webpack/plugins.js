@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-module.exports = ({ isDevelopmentMode, paths: { linterTsconfigPath, indexHtmlPath } }) => {
+module.exports = ({ isDevelopmentMode, isTestMode, paths: { linterTsconfigPath, indexHtmlPath } }) => {
   const productionPlugins = [
     new MiniCssExtractPlugin({
       filename: '[chunkhash].css',
@@ -21,6 +21,6 @@ module.exports = ({ isDevelopmentMode, paths: { linterTsconfigPath, indexHtmlPat
       async: false,
     }),
     ...(isDevelopmentMode ? developmentPlugins : productionPlugins),
-    new CleanWebpackPlugin(),
+    ...(isTestMode ? [new CleanWebpackPlugin()] : []),
   ]
 }

@@ -1,36 +1,33 @@
 const path = require('path')
 
-const packageDirectoryName = process.env.FOLDER
-console.log('process.env: ', process.env)
+// console.log('process.env: ', process.env)
 const currentPackageRootPath = path.resolve(__dirname, '..')
+const packagesPath = path.resolve(currentPackageRootPath, '..', '..')
 const configFolderPath = path.resolve(currentPackageRootPath, '.config')
 
-module.exports = ({ packageJsonFolderPath }) => {
-  console.log('packageJsonFolderPath: ', packageJsonFolderPath)
-  console.log('packageDirectoryName: ', packageDirectoryName)
-  const fixedPackageJsonFolderPath = packageJsonFolderPath.endsWith('lerna-starter')
-    ? path.resolve(packageJsonFolderPath, 'packages', packageDirectoryName)
-    : packageJsonFolderPath
-  const rootPath = fixedPackageJsonFolderPath
+module.exports = () => {
+  const packageDirectoryName = process.env.FOLDER || process.env['FOLDER']
+  console.log('lib - packageDirectoryName: ', packageDirectoryName)
+  const packageJsonFolderPath = path.resolve(packagesPath, packageDirectoryName)
   const webpackConfigPath = path.resolve(configFolderPath, 'webpack', 'webpack.config.js')
   const prodTsconfigPath = path.resolve(configFolderPath, 'tsconfig.json')
-  const linterTsconfigPath = path.resolve(fixedPackageJsonFolderPath, 'tsconfig.json')
-  const mainNodeModulesPath = path.resolve(rootPath, '..', '..', 'node_modules')
-  const srcPath = path.resolve(rootPath, 'src')
+  const linterTsconfigPath = path.resolve(packageJsonFolderPath, 'tsconfig.json')
+  const mainNodeModulesPath = path.resolve(packageJsonFolderPath, '..', '..', 'node_modules')
+  const srcPath = path.resolve(packageJsonFolderPath, 'src')
   const appEntryFilePath = path.resolve(srcPath, 'index.ts')
-  const distPath = path.join(rootPath, 'dist')
+  const distPath = path.join(packageJsonFolderPath, 'dist')
   const babelRcPath = path.join(configFolderPath, '.babelrc.js')
   const eslintRcPath = path.join(configFolderPath, '.eslintrc.js')
-  const eslintIgnorePath = path.join(rootPath, '.eslintignore')
-  const nodeModulesPath = path.resolve(rootPath, 'node_modules')
-  const testsPath = path.resolve(rootPath, 'test')
+  const eslintIgnorePath = path.join(packageJsonFolderPath, '.eslintignore')
+  const nodeModulesPath = path.resolve(packageJsonFolderPath, 'node_modules')
+  const testsPath = path.resolve(packageJsonFolderPath, 'test')
 
   const resolveModulesPathsArray = [srcPath, nodeModulesPath, mainNodeModulesPath]
   const resolveModulesPathsTestArray = [testsPath, srcPath, nodeModulesPath, mainNodeModulesPath]
 
   return {
-    packageJsonFolderPath: fixedPackageJsonFolderPath,
-    rootPath,
+    packagesPath,
+    packageJsonFolderPath,
     webpackConfigPath,
     prodTsconfigPath,
     srcPath,

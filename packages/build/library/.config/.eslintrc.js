@@ -1,8 +1,3 @@
-const generatePaths = require('./generate-paths')
-
-const paths = generatePaths({ packageJsonFolderPath: process.env.INIT_CWD })
-const { srcPath } = paths
-
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {

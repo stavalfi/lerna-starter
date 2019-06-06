@@ -1,7 +1,7 @@
 const { externals, moduleWithRules, resolve, plugins } = require('./index')
 const generatePaths = require('../generate-paths')
 
-const paths = generatePaths({ packageJsonFolderPath: process.env.INIT_CWD })
+const paths = generatePaths()
 
 const { distPath, appEntryFilePath } = paths
 

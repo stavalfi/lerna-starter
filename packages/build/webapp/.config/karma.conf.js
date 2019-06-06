@@ -1,7 +1,7 @@
 const { moduleWithRules, resolve, plugins } = require('./webpack')
 const generatePaths = require('./generate-paths')
 
-const paths = generatePaths({ packageJsonFolderPath: process.env.INIT_CWD })
+const paths = generatePaths()
 const { testsPath } = paths
 
 module.exports = config => {
