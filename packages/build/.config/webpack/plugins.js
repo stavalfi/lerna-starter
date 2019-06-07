@@ -3,8 +3,15 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const chalk = require('chalk')
 
-module.exports = ({ isDevelopmentMode, isTestMode, isWebApp, paths: { linterTsconfigPath, indexHtmlPath } }) => {
+module.exports = ({
+  isDevelopmentMode,
+  isTestMode,
+  constants: { isWebApp, packageDirectoryName, isCI },
+  paths: { linterTsconfigPath, indexHtmlPath },
+}) => {
   const productionPlugins = [
     new MiniCssExtractPlugin({
       filename: '[chunkhash].css',
@@ -16,6 +23,13 @@ module.exports = ({ isDevelopmentMode, isTestMode, isWebApp, paths: { linterTsco
       ? [
           new HtmlWebpackPlugin({
             template: indexHtmlPath,
+          }),
+        ]
+      : []),
+    ...(!isCI
+      ? [
+          new ProgressBarPlugin({
+            format: `Building ${packageDirectoryName} [:bar] ${chalk.green.bold(':percent')} (:elapsed seconds)`,
           }),
         ]
       : []),

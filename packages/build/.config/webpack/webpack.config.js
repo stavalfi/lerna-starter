@@ -1,18 +1,15 @@
-const stringToBoolean = require('boolean')
-
 const { externals, moduleWithRules, resolve, plugins } = require('./index')
-const generatePaths = require('../generate-paths')
-
-const paths = generatePaths()
+const { paths, constants } = require('../utils')
 
 const { distPath, appEntryFilePaths } = paths
-const isWebApp = stringToBoolean(process.env.WEBAPP || process.env['WEBAPP'])
+const { isWebApp, isCI } = constants
 
 module.exports = (env = {}, argv = {}) => {
   const isDevelopmentMode = argv.mode === 'development' || env.devServer
   const publicPath = '/'
   console.log('webpack mode: ', isDevelopmentMode ? 'development' : 'production')
   console.log('test mode: No')
+  console.log(`CI: ${isCI}`)
 
   return {
     cache: true,
@@ -36,12 +33,12 @@ module.exports = (env = {}, argv = {}) => {
       port: 8082,
     },
 
-    externals: externals({ isDevelopmentMode, isTestMode: false, isWebApp, publicPath, paths }),
+    externals: externals({ isDevelopmentMode, isTestMode: false, constants, publicPath, paths }),
 
-    resolve: resolve({ isDevelopmentMode, isTestMode: false, isWebApp, publicPath, paths }),
+    resolve: resolve({ isDevelopmentMode, isTestMode: false, constants, publicPath, paths }),
 
-    plugins: plugins({ isDevelopmentMode, isTestMode: false, isWebApp, publicPath, paths }),
+    plugins: plugins({ isDevelopmentMode, isTestMode: false, constants, publicPath, paths }),
 
-    module: moduleWithRules({ isDevelopmentMode, isTestMode: false, isWebApp, publicPath, paths }),
+    module: moduleWithRules({ isDevelopmentMode, isTestMode: false, constants, publicPath, paths }),
   }
 }

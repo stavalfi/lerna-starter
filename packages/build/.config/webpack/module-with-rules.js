@@ -4,7 +4,7 @@ const jsonImporter = require('node-sass-json-importer')
 module.exports = ({
   isDevelopmentMode,
   isTestMode,
-  isWebApp,
+  constants: { isWebApp },
   publicPath = '.',
   paths: { srcPath, eslintRcPath, libTsconfigPath, babelRcPath, packageJsonFolderPath },
 }) => ({
