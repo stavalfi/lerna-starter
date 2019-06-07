@@ -8,4 +8,7 @@ module.exports = {
   isWebApp,
   packageDirectoryName,
   isCI,
+  devServerPort: 8002,
+  devServerHost: 'localhost',
+  devServerHttpProtocol: true,
 }

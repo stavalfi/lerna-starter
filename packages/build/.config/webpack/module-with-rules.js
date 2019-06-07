@@ -46,7 +46,8 @@ module.exports = ({
             failOnWarning: isDevelopmentMode || isTestMode,
             configFile: eslintRcPath,
             fix: false,
-            cache: true,
+            // eslint import will remmember sometimes failures from last run and won't re-check imports.
+            cache: false,
           },
         },
       ],
