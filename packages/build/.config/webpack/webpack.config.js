@@ -8,11 +8,15 @@ const paths = generatePaths()
 const { distPath, appEntryFilePaths } = paths
 const isWebApp = stringToBoolean(process.env.WEBAPP || process.env['WEBAPP'])
 
-module.exports = (env, argv = {}) => {
-  const isDevelopmentMode = argv.mode === 'development'
-  const publicPath = '.'
+module.exports = (env = {}, argv = {}) => {
+  const isDevelopmentMode = argv.mode === 'development' || env.devServer
+  const publicPath = '/'
+  console.log('webpack mode: ', isDevelopmentMode ? 'development' : 'production')
+  console.log('test mode: No')
 
   return {
+    cache: true,
+
     stats: isDevelopmentMode ? 'minimal' : 'normal',
 
     devtool: isDevelopmentMode ? 'source-map' : 'none',

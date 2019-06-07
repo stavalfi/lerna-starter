@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "start": "lerna exec --stream --scope @flow/editor --ignore @flow/build -- yarn start",
+    "start:all": "lerna exec --stream --parallel --ignore @flow/build -- yarn start",
     "pretty-quick": "pretty-quick",
     "clean": "lerna run clean --parallel",
     "clean:all": "lerna run clean --parallel && rm -rf node_modules",
@@ -11,13 +13,9 @@
   },
   "devDependencies": {
     "husky": "^2.3.0",
-    "pretty-quick": "^1.11.0",
-    "lerna": "^3.6.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lerna run lint-staged --ignore @flow/build"
-    }
+    "lerna": "^3.6.0",
+    "prettier": "^1.18.0",
+    "pretty-quick": "^1.11.0"
   },
   "workspaces": [
     "packages/*"

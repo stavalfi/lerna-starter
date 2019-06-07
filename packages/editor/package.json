@@ -14,9 +14,6 @@
     "clean:all": "yarn run clean && rm -rf node_modules",
     "exec": "WEBAPP=true FOLDER=editor yarn workspace @flow/build"
   },
-  "eslintIgnore": [
-    "dist"
-  ],
   "keywords": [],
   "author": "",
   "license": "MIT",
