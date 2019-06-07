@@ -6,7 +6,6 @@ const packagesPath = path.resolve(currentPackageRootPath, '..')
 const configFolderPath = path.resolve(currentPackageRootPath, '.config')
 
 const packageJsonFolderPath = path.resolve(packagesPath, packageDirectoryName)
-const webpackConfigPath = path.resolve(configFolderPath, 'webpack', 'webpack.config.js')
 const libTsconfigPath = path.resolve(configFolderPath, 'lib-tsconfig.json')
 const linterTsconfigPath = path.resolve(packageJsonFolderPath, 'tsconfig.json')
 const mainNodeModulesPath = path.resolve(packageJsonFolderPath, '..', '..', 'node_modules')
@@ -19,14 +18,14 @@ const eslintIgnorePath = path.join(packageJsonFolderPath, '.eslintignore')
 const nodeModulesPath = path.resolve(packageJsonFolderPath, 'node_modules')
 const testsPath = path.resolve(packageJsonFolderPath, 'test')
 const indexHtmlPath = path.resolve(configFolderPath, 'webpack', 'index.html')
+const webpackFolderPath = path.resolve(configFolderPath, 'webpack')
+const webpackConfigPath = path.resolve(webpackFolderPath, 'webpack.config.js')
 
-const resolveModulesPathsArray = [srcPath, nodeModulesPath, mainNodeModulesPath]
-const resolveModulesPathsTestArray = [testsPath, srcPath, nodeModulesPath, mainNodeModulesPath]
+const resolveModulesPathsArray = [srcPath, testsPath, nodeModulesPath, mainNodeModulesPath]
 
 module.exports = {
   packagesPath,
   packageJsonFolderPath,
-  webpackConfigPath,
   libTsconfigPath,
   srcPath,
   babelRcPath,
@@ -38,7 +37,8 @@ module.exports = {
   distPath,
   appEntryFilePaths,
   resolveModulesPathsArray,
-  resolveModulesPathsTestArray,
   testsPath,
   indexHtmlPath,
+  webpackFolderPath,
+  webpackConfigPath,
 }

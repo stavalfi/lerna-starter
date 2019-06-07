@@ -1,15 +1,12 @@
-const { externals, moduleWithRules, resolve, plugins } = require('./index')
+const { externals, moduleWithRules, resolve, plugins, devServer } = require('./index')
 const { paths, constants } = require('../utils')
 
 const { distPath, appEntryFilePaths } = paths
-const { isWebApp, isCI } = constants
+const { isWebApp } = constants
 
 module.exports = (env = {}, argv = {}) => {
   const isDevelopmentMode = argv.mode === 'development' || env.devServer
   const publicPath = '/'
-  console.log('webpack mode: ', isDevelopmentMode ? 'development' : 'production')
-  console.log('test mode: No')
-  console.log(`CI: ${isCI}`)
 
   return {
     cache: true,
@@ -28,10 +25,7 @@ module.exports = (env = {}, argv = {}) => {
       ...(!isWebApp && { libraryTarget: 'umd' }),
     },
 
-    devServer: {
-      host: 'localhost',
-      port: 8082,
-    },
+    devServer: devServer({ isDevelopmentMode, isTestMode: false, constants, publicPath, paths }),
 
     externals: externals({ isDevelopmentMode, isTestMode: false, constants, publicPath, paths }),
 
