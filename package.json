@@ -20,6 +20,9 @@
   "workspaces": [
     "packages/*"
   ],
+  "engines": {
+    "node": ">=8.11.3"
+  },
   "description": "a full-featured lerna starter",
   "keywords": [
     "lerna",
