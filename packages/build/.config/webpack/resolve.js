@@ -1,5 +1,5 @@
-module.exports = ({ isTestMode, paths: { resolveModulesPathsArray, resolveModulesPathsTestArray } }) => ({
+module.exports = ({ paths: { resolveModulesPathsArray } }) => ({
   extensions: ['.js', '.sass', '.json', '.ts', '.tsx'],
-  modules: isTestMode ? resolveModulesPathsTestArray : resolveModulesPathsArray,
+  modules: resolveModulesPathsArray,
   alias: { 'react-dom': '@hot-loader/react-dom' },
 })

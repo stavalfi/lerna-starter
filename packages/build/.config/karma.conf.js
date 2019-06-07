@@ -2,13 +2,8 @@ const { moduleWithRules, resolve, plugins } = require('./webpack')
 const { paths, constants } = require('./utils')
 
 const { testsPath } = paths
-const { isCI } = constants
 
 module.exports = config => {
-  console.log('webpack mode: development')
-  console.log('test mode: Yes')
-  console.log(`CI: ${isCI}`)
-
   const files = [
     `${testsPath}/utils/import-polyfills.ts`,
     `${testsPath}/*.spec.js`,
@@ -34,6 +29,7 @@ module.exports = config => {
     },
     webpackMiddleware: {
       noInfo: true,
+      stats: 'errors-only',
     },
   })
 }

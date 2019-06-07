@@ -1,3 +1,7 @@
+const {
+  paths: { webpackConfigPath },
+} = require('./utils')
+
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -16,8 +20,14 @@ module.exports = {
     node: true,
     mocha: true,
   },
-  plugins: ['react', 'react-hooks', '@typescript-eslint', 'json'],
-  extends: ['eslint:recommended', 'prettier'],
+  plugins: ['react', 'react-hooks', '@typescript-eslint', 'json', 'import'],
+  extends: [
+    'eslint:recommended',
+    'prettier',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
+  ],
   globals: {},
   rules: {
     'eol-last': 0,
@@ -39,5 +49,15 @@ module.exports = {
     'getter-return': 0,
     curly: 'error',
     'react-hooks/rules-of-hooks': 'error',
+    'import/no-unresolved': 'error',
+    'import/named': 'error',
+    'import/default': 'error',
+  },
+  settings: {
+    'import/resolver': {
+      webpack: {
+        config: webpackConfigPath,
+      },
+    },
   },
 }

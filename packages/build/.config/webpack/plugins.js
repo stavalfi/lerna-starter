@@ -5,13 +5,12 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const chalk = require('chalk')
+const terminalLink = require('terminal-link')
+const _startCase = require('lodash/startCase')
+module.exports = ({ isDevelopmentMode, isTestMode, constants, paths }) => {
+  const { isWebApp, packageDirectoryName, isCI } = constants
+  const { linterTsconfigPath, indexHtmlPath } = paths
 
-module.exports = ({
-  isDevelopmentMode,
-  isTestMode,
-  constants: { isWebApp, packageDirectoryName, isCI },
-  paths: { linterTsconfigPath, indexHtmlPath },
-}) => {
   const productionPlugins = [
     new MiniCssExtractPlugin({
       filename: '[chunkhash].css',
@@ -33,12 +32,34 @@ module.exports = ({
           }),
         ]
       : []),
-    new FriendlyErrorsWebpackPlugin(),
+    new FriendlyErrorsWebpackPlugin(
+      getFriendlyErrorsWebpackPluginOptions({ isDevelopmentMode, isTestMode, constants, paths }),
+    ),
     new ForkTsCheckerWebpackPlugin({
       tsconfig: linterTsconfigPath,
-      async: false,
+      async: true,
     }),
     ...(isDevelopmentMode ? developmentPlugins : productionPlugins),
     ...(isTestMode ? [new CleanWebpackPlugin()] : []),
   ]
+}
+
+const getFriendlyErrorsWebpackPluginOptions = ({
+  isDevelopmentMode,
+  isTestMode,
+  constants: { isWebApp, packageDirectoryName, isCI, devServerHost, devServerPort, devServerHttpProtocol },
+}) => {
+  const mode = isDevelopmentMode ? 'Development' : 'Production'
+  const link = `${devServerHttpProtocol ? 'http' : 'https'}://${devServerHost}:${devServerPort}`
+  const coloredLink = terminalLink(chalk.blueBright(link), link)
+  return {
+    ...(!isCI && {
+      compilationSuccessInfo: {
+        notes: [
+          `${chalk.bold(_startCase(packageDirectoryName))} - ${mode}${isWebApp ? `: ${coloredLink}` : ''}\n\n`,
+          ...(isTestMode ? ['Test Mode'] : []),
+        ],
+      },
+    }),
+  }
 }
