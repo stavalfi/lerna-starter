@@ -23,7 +23,7 @@ module.exports = {
     'eol-last': 0,
     'jsx-quotes': 1,
     'new-cap': 0,
-    'no-console': 0,
+    'no-console': 'off',
     'no-debugger': 1,
     'no-underscore-dangle': 0,
     'no-unused-vars': 'off',

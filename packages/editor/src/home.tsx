@@ -29,6 +29,7 @@ export default class Home extends React.Component<{}, State> {
   render() {
     return (
       <div className={'home'}>
+        <i className="sf sf-critical" />
         <div className={'draw-flow-section'}>
           <DrawFlow
             height={600}

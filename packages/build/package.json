@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "webpack-dev-server --hot --env.devServer --progress --config .config/webpack/webpack.config.js",
+    "start": "webpack-dev-server --hot --env.devServer --config .config/webpack/webpack.config.js",
     "build:dev": "webpack --mode development --progress --config .config/webpack/webpack.config.js",
     "build:prod": "webpack --mode production --progress --config .config/webpack/webpack.config.js",
     "test": "yarn run test:unit",
@@ -11,9 +11,6 @@
     "test:watch": "karma start --no-single-run",
     "lint-staged": "lint-staged --config .config/lint-staged.config.js"
   },
-  "eslintIgnore": [
-    "dist"
-  ],
   "keywords": [],
   "author": "",
   "license": "MIT",
@@ -101,6 +98,7 @@
     "ts-loader": "^6.0.0",
     "typescript": "^3.4.5",
     "url-loader": "^1.1.2",
+    "webfonts-loader": "^4.4.0",
     "webpack": "^4.31.0",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.3.1"

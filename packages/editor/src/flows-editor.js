@@ -68,8 +68,8 @@ export default class FlowsEditor extends React.Component {
           highlightActiveLine={true}
           value={this.state.config}
           setOptions={{
-            enableBasicAutocompletion: true,
             enableLiveAutocompletion: true,
+            enableBasicAutocompletion: true,
             enableSnippets: true,
             showLineNumbers: true,
             tabSize: 2,

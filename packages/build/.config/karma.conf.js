@@ -7,6 +7,9 @@ const { testsPath } = paths
 const isWebApp = process.env.WEBAPP || process.env['WEBAPP']
 
 module.exports = config => {
+  console.log('webpack mode: development')
+        console.log('test mode: Yes')
+
   const files = [
     `${testsPath}/utils/import-polyfills.ts`,
     `${testsPath}/*.spec.js`,

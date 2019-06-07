@@ -12,7 +12,7 @@ module.exports = ({
     rules: [
       {
         test: /\.(ts|js)x?$/,
-        exclude: /(node_module|dist)/,
+        exclude: /(node_module|dist|my-symphony.font.js)/,
         use: [
           {
             loader: 'babel-loader',
@@ -46,6 +46,8 @@ module.exports = ({
               failOnError: true,
               failOnWarning: isDevelopmentMode || isTestMode,
               configFile: eslintRcPath,
+              fix: false,
+              cache: true,
             },
           },
         ],
