@@ -1,4 +1,4 @@
-module.exports = ({ isWebapp }) =>
+module.exports = ({ constants: { isWebapp } }) =>
   isWebapp
     ? {}
     : {

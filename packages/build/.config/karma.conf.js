@@ -1,14 +1,13 @@
 const { moduleWithRules, resolve, plugins } = require('./webpack')
-const generatePaths = require('./generate-paths')
+const { paths, constants } = require('./utils')
 
-const paths = generatePaths({ packageDirectoryName: process.env.FOLDER })
 const { testsPath } = paths
-
-const isWebApp = process.env.WEBAPP || process.env['WEBAPP']
+const { isCI } = constants
 
 module.exports = config => {
   console.log('webpack mode: development')
-        console.log('test mode: Yes')
+  console.log('test mode: Yes')
+  console.log(`CI: ${isCI}`)
 
   const files = [
     `${testsPath}/utils/import-polyfills.ts`,
@@ -29,9 +28,9 @@ module.exports = config => {
     webpack: {
       mode: 'development',
       devtool: 'inline-source-map',
-      module: moduleWithRules({ isDevelopmentMode: true, isTestMode: true, isWebApp, paths }),
-      resolve: resolve({ isDevelopmentMode: true, isTestMode: true, isWebApp, paths }),
-      plugins: plugins({ isDevelopmentMode: true, isTestMode: true, isWebApp, paths }),
+      module: moduleWithRules({ isDevelopmentMode: true, isTestMode: true, paths, constants }),
+      resolve: resolve({ isDevelopmentMode: true, isTestMode: true, paths, constants }),
+      plugins: plugins({ isDevelopmentMode: true, isTestMode: true, paths, constants }),
     },
     webpackMiddleware: {
       noInfo: true,
