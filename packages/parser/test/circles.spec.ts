@@ -33,7 +33,6 @@ describe('circle', () => {
     ]
     const actualFlows = createFlows(actual, flowsConfig)
     const expectedFlows = createExpected(expected, flowsConfig(actual))
-
     assertEqualFlows(expectedFlows, actualFlows)
   })
 

@@ -1,14 +1,18 @@
-const stringToBoolean = require('boolean')
+const envVariables = require('./env-variables')
 
-const isWebApp = stringToBoolean(process.env.WEBAPP || process.env['WEBAPP'])
-const isCI = stringToBoolean(process.env.CI || process.env['CI'])
-const packageDirectoryName = process.env.FOLDER || process.env['FOLDER']
+const mainProjectDirName = 'lerna-starter'
+const packagesDirName = 'packages'
+
+const filesExt = ['ts', 'tsx', 'js', 'jsx']
+const testFilesExt = 'spec'
 
 module.exports = {
-  isWebApp,
-  packageDirectoryName,
-  isCI,
+  mainProjectDirName,
+  packagesDirName,
   devServerPort: 8002,
   devServerHost: 'localhost',
   devServerHttpProtocol: true,
+  filesExt,
+  testFilesExt,
+  ...envVariables,
 }

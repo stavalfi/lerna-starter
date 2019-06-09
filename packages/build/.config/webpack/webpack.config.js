@@ -9,7 +9,7 @@ module.exports = (env = {}, argv = {}) => {
   const publicPath = '/'
 
   return {
-    cache: true,
+    cache: isDevelopmentMode,
 
     stats: isDevelopmentMode ? 'minimal' : 'normal',
 
