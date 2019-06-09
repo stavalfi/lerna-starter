@@ -13,15 +13,17 @@ export type ExpectedFlow = {
 }
 
 export const declareFlows = (n: number, path: Path, extendsSplitter: string): ExpectedFlow[] =>
-  [...Array(n).keys()].map(i => ({
-    name: `${path[0]}${i}`,
-    graph: [
-      {
-        [`${path[0]}${i}${extendsSplitter}${path.slice(1).join(extendsSplitter)}`]: [[], []],
-      },
-    ],
-    defaultNodeIndex: 0,
-  }))
+  [...Array(n).keys()].map(
+    (i): ExpectedFlow => ({
+      name: `${path[0]}${i}`,
+      graph: [
+        {
+          [`${path[0]}${i}${extendsSplitter}${path.slice(1).join(extendsSplitter)}`]: [[], []],
+        },
+      ],
+      defaultNodeIndex: 0,
+    }),
+  )
 
 export const createExpected = (
   expectedFlowsArrays: ExpectedFlow[],
@@ -62,7 +64,7 @@ const compareNodes = (splitters: Splitters) => (node1: Node, node2: Node) => {
   return 0
 }
 
-function sortGraph(graph: Graph, splitters = { extends: '_', identifier: '/' }) {
+function sortGraph(graph: Graph, splitters = { extends: '_', identifier: '/' }): (Node & { displayName: string })[] {
   const newGraph = graph
     .map(node => ({
       ...node,
@@ -78,24 +80,31 @@ function sortGraph(graph: Graph, splitters = { extends: '_', identifier: '/' }) 
     })
     .reduce((acc, obj) => ({ ...acc, ...obj }), {})
 
-  return newGraph.map(node => ({
-    ...node,
-    childrenIndexes: node.childrenIndexes
-      .map(i => oldIndexToNewIndex[i])
-      .sort((i, j) => compareNodes(splitters)(newGraph[i], newGraph[j])),
-    parentsIndexes: node.parentsIndexes
-      .map(i => oldIndexToNewIndex[i])
-      .sort((i, j) => compareNodes(splitters)(newGraph[i], newGraph[j])),
-  }))
+  return newGraph
+    .map(node => ({
+      ...node,
+      childrenIndexes: node.childrenIndexes
+        .map(i => oldIndexToNewIndex[i])
+        .sort((i, j) => compareNodes(splitters)(newGraph[i], newGraph[j])),
+      parentsIndexes: node.parentsIndexes
+        .map(i => oldIndexToNewIndex[i])
+        .sort((i, j) => compareNodes(splitters)(newGraph[i], newGraph[j])),
+    }))
+    .map(node => ({
+      path: node.path,
+      childrenIndexes: node.childrenIndexes,
+      parentsIndexes: node.parentsIndexes,
+      displayName: node.displayName,
+    }))
 }
 
-type ParsedFlowWithDisplyName = Omit<ParsedFlow, 'graph' | 'id' | 'sideEffects'> & {
-  graph: (Node & { displayName: string })[]
+type ParsedFlowWithDisplyName = Omit<ParsedFlow, 'id' | 'sideEffects' | 'graph'> & {
+  graph: (Node & { displayName?: string })[]
 }
 
 export function assertEqualFlows(
-  expectedFlowsArray1: Omit<ParsedFlow, 'id' | 'sideEffects'>[],
-  actualFlowsArray1: Omit<ParsedFlow, 'id' | 'sideEffects'>[],
+  expectedFlowsArray1: ParsedFlowWithDisplyName[],
+  actualFlowsArray1: ParsedFlowWithDisplyName[],
   count = 0,
 ) {
   const expectedFlowsArray = expectedFlowsArray1.map(flow => ({
@@ -118,6 +127,7 @@ export function assertEqualFlows(
         \n${flowToString(actualFlowsArray[i])} \n${graphToString(actualFlowsArray[i].graph)}`
     expect(actualFlow, errorMessage).to.be.a('object')
     if (actualFlow) {
+      expect(actualFlow.graph, errorMessage).deep.equal(expectedFlow.graph)
       expect(actualFlow.defaultNodeIndex, errorMessage).deep.equal(expectedFlow.defaultNodeIndex)
       if (count === 0 && expectedFlow.hasOwnProperty('extendedFlowIndex')) {
         const expectedExtendedFlow = expectedFlowsArray[expectedFlow.extendedFlowIndex as number]
@@ -134,15 +144,16 @@ export function assertEqualFlows(
     }
   })
 
-  assertEqualFlows(actualFlowsArray1, expectedFlowsArray1, count + 1)
+  // assertEqualFlows(actualFlowsArray1, expectedFlowsArray1, count + 1)
 }
 
 function findFlowByFlow(flowsArray: ParsedFlowWithDisplyName[], flowToSearch: ParsedFlowWithDisplyName) {
   return flowsArray.find(flow => {
+    let stringToFind = graphToString(flowToSearch.graph)
+    let stringNow = graphToString(flow.graph)
     return (
       (flow.hasOwnProperty('name') && flowToSearch.hasOwnProperty('name') && flow.name === flowToSearch.name) ||
-      (flow.defaultNodeIndex === flowToSearch.defaultNodeIndex &&
-        graphToString(flow.graph) === graphToString(flowToSearch.graph))
+      (flow.defaultNodeIndex === flowToSearch.defaultNodeIndex && stringNow === stringToFind)
     )
   })
 }
@@ -161,7 +172,7 @@ function flowToString(flow: ParsedFlowWithDisplyName) {
   return str
 }
 
-export function graphToString(sortedGraph: (Node & { displayName: string })[]) {
+export function graphToString(sortedGraph: (Node & { displayName?: string })[]) {
   // i === row number
   // j === column number
   // [i][j] === edge from i to j
@@ -169,14 +180,14 @@ export function graphToString(sortedGraph: (Node & { displayName: string })[]) {
   sortedGraph
     .map(node => node.displayName)
     .forEach((displayName, i) => {
-      matrix[i + 1][0] = displayName
-      matrix[0][i + 1] = displayName
+      matrix[i + 1][0] = displayName as string
+      matrix[0][i + 1] = displayName as string
     })
   sortedGraph.forEach((node, i) => {
     node.childrenIndexes.forEach(j => (matrix[i + 1][j + 1] = 'T'))
   })
   sortedGraph.forEach((node, i) => {
-    node.childrenIndexes.forEach(j => (matrix[i + 1][0] = node.displayName))
+    node.childrenIndexes.forEach(j => (matrix[i + 1][0] = node.displayName as string))
   })
   return table(matrix)
 }

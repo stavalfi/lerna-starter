@@ -1,19 +1,11 @@
 const { moduleWithRules, resolve, plugins } = require('./webpack')
 const { paths, constants } = require('./utils')
 
-const { testsPath } = paths
+const { testFilesGlobsPaths, testPolyfillFilePath } = paths
 
 module.exports = config => {
-  const files = [
-    `${testsPath}/utils/import-polyfills.ts`,
-    `${testsPath}/*.spec.js`,
-    `${testsPath}/**/*.spec.js`,
-    `${testsPath}/*.spec.ts`,
-    `${testsPath}/**/*.spec.ts`,
-    `${testsPath}/*.spec.tsx`,
-    `${testsPath}/**/*.spec.tsx`,
-  ]
-  const preprocessors = files.slice(1).reduce((acc, path) => ({ ...acc, [path]: ['webpack', 'sourcemap'] }), {})
+  const files = [testPolyfillFilePath, ...testFilesGlobsPaths]
+  const preprocessors = testFilesGlobsPaths.reduce((acc, path) => ({ ...acc, [path]: ['webpack', 'sourcemap'] }), {})
   config.set({
     browsers: ['ChromeHeadless'],
     frameworks: ['mocha', 'sinon-chai', 'chai'],

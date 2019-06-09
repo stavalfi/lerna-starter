@@ -6,7 +6,7 @@ module.exports = ({
   isTestMode,
   constants: { isWebApp },
   publicPath = '.',
-  paths: { srcPath, eslintRcPath, libTsconfigPath, babelRcPath, packageJsonFolderPath },
+  paths: { srcPath, eslintRcPath, libTsconfigFilePath, babelRcPath, packageJsonFolderPath },
 }) => ({
   rules: [
     {
@@ -27,7 +27,7 @@ module.exports = ({
                 loader: 'ts-loader',
                 options: {
                   context: packageJsonFolderPath,
-                  configFile: libTsconfigPath,
+                  configFile: libTsconfigFilePath,
                   experimentalFileCaching: true,
                 },
               },
