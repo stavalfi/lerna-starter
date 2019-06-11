@@ -15,8 +15,13 @@
 
 ##### Main dependencies
 
-- React
-- React-hot-loader
+- React 16.8.6
+- React-hot-loader 4.8.6
+
+##### Other Capabilities
+
+- Dynamic imports `import()`
+- React lazy (Dynamic imports)
 
 ---
 
