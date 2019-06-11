@@ -1,0 +1,30 @@
+{
+  "name": "@flow/consumer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.html",
+  "scripts": {
+    "start": "yarn run exec start",
+    "build:prod": "yarn run exec build:prod",
+    "test": "yarn run exec test",
+    "test:unit": "yarn run exec test:unit",
+    "test:watch": "yarn run exec test:watch",
+    "lint-staged": "yarn run exec lint-staged",
+    "clean": "rm -rf dist",
+    "clean:all": "yarn run clean && rm -rf node_modules",
+    "exec": "WEBAPP=true FOLDER=consumer2 yarn workspace @flow/build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-hot-loader": "^4.8.6"
+  },
+  "devDependencies": {
+    "@types/deep-equal": "^1.0.1",
+    "karma": "^4.1.0",
+    "pkg-ok": "^2.3.1"
+  }
+}
