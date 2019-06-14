@@ -7,6 +7,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const chalk = require('chalk')
 const terminalLink = require('terminal-link')
 const _startCase = require('lodash/startCase')
+
 module.exports = ({ isDevelopmentMode, isTestMode, constants, paths }) => {
   const { isWebApp, packageDirectoryName, isCI } = constants
   const { linterTsconfigPath, indexHtmlPath } = paths
@@ -37,7 +38,7 @@ module.exports = ({ isDevelopmentMode, isTestMode, constants, paths }) => {
     ),
     new ForkTsCheckerWebpackPlugin({
       tsconfig: linterTsconfigPath,
-      async: true,
+      async: false,
     }),
     ...(isDevelopmentMode ? developmentPlugins : productionPlugins),
     ...(isTestMode ? [new CleanWebpackPlugin()] : []),
@@ -51,7 +52,7 @@ const getFriendlyErrorsWebpackPluginOptions = ({
 }) => {
   const mode = isDevelopmentMode ? 'Development' : 'Production'
   const link = `${devServerHttpProtocol ? 'http' : 'https'}://${devServerHost}:${devServerPort}`
-  const coloredLink = terminalLink(chalk.blueBright(link), link)
+  const coloredLink = terminalLink('WebApp', chalk.blueBright(link))
   return {
     ...(!isCI && {
       compilationSuccessInfo: {

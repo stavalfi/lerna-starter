@@ -1,7 +1,7 @@
 import { assertEqualFlows, createFlows, createExpected, declareFlows, ExpectedFlow } from 'utils/utils'
 import { UserFlow } from 'types'
 
-describe('circle', () => {
+describe('circle123', () => {
   const flowsConfig = (graph: UserFlow) => ({
     splitters: {
       extends: '_',
@@ -82,7 +82,7 @@ describe('circle', () => {
     assertEqualFlows(expectedFlows, actualFlows)
   })
 
-  it('3', () => {
+  it('4', () => {
     const actual = {
       name: 'composed-flow',
       graph: ['flow0:flow1_a:flow0'],
@@ -105,7 +105,7 @@ describe('circle', () => {
     assertEqualFlows(expectedFlows, actualFlows)
   })
 
-  it('4', () => {
+  it('5', () => {
     const actual = {
       name: 'composed-flow',
       graph: ['flow0_a:flow1:flow0'],
@@ -128,7 +128,7 @@ describe('circle', () => {
     assertEqualFlows(expectedFlows, actualFlows)
   })
 
-  it('5', () => {
+  it('6', () => {
     const actual = {
       name: 'composed-flow',
       graph: ['flow0:flow1_a', 'flow1:flow0_a'],
@@ -151,7 +151,7 @@ describe('circle', () => {
     assertEqualFlows(expectedFlows, actualFlows)
   })
 
-  it('6', () => {
+  it('7', () => {
     const actual = {
       name: 'composed-flow',
       graph: 'flow0:flow0',
@@ -175,7 +175,7 @@ describe('circle', () => {
     assertEqualFlows(expectedFlows, actualFlows)
   })
 
-  it('7', () => {
+  it('8', () => {
     const actual = {
       name: 'flow0',
       graph: 'flow0:flow0',

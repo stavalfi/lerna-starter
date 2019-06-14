@@ -178,7 +178,7 @@ describe('flatten-user-flow-shortcuts', () => {
     expect(actualUserFlows).deep.equal(expectedUserFlows)
   })
 
-  it('12', () => {
+  it('13', () => {
     const actual = {
       graph: ['flow0:flow1:flow2'],
     }
@@ -193,7 +193,7 @@ describe('flatten-user-flow-shortcuts', () => {
     expect(actualUserFlows).deep.equal(expectedUserFlows)
   })
 
-  it('13', () => {
+  it('14', () => {
     const actual = {
       name: 'flow0',
       graph: ['flow0'],
@@ -210,7 +210,7 @@ describe('flatten-user-flow-shortcuts', () => {
     expect(actualUserFlows).deep.equal(expectedUserFlows)
   })
 
-  it('14', () => {
+  it('15', () => {
     const actual = {
       name: 'flow1',
       graph: ['flow0'],
@@ -227,7 +227,7 @@ describe('flatten-user-flow-shortcuts', () => {
     expect(actualUserFlows).deep.equal(expectedUserFlows)
   })
 
-  it('15', () => {
+  it('16', () => {
     const actual = {
       name: 'flow1',
       graph: ['flow0/id1'],
@@ -244,7 +244,7 @@ describe('flatten-user-flow-shortcuts', () => {
     expect(actualUserFlows).deep.equal(expectedUserFlows)
   })
 
-  it('16', () => {
+  it('17', () => {
     const actual = {
       graph: ['flow0/id1'],
     }
@@ -259,7 +259,7 @@ describe('flatten-user-flow-shortcuts', () => {
     expect(actualUserFlows).deep.equal(expectedUserFlows)
   })
 
-  it('17', () => {
+  it('18', () => {
     const actual = 'a_b:a_c'
     const expectedUserFlows = [
       {
@@ -273,7 +273,7 @@ describe('flatten-user-flow-shortcuts', () => {
     expect(actualUserFlows).deep.equal(expectedUserFlows)
   })
 
-  it('18', () => {
+  it('19', () => {
     const parsedFlows = [
       {
         name: 'a',
@@ -300,7 +300,7 @@ describe('flatten-user-flow-shortcuts', () => {
     expect(actualUserFlows).deep.equal(expectedUserFlows)
   })
 
-  it('19', () => {
+  it('20', () => {
     const parsedFlows = [
       {
         name: 'a',
@@ -328,7 +328,7 @@ describe('flatten-user-flow-shortcuts', () => {
     expect(actualUserFlows).deep.equal(expectedUserFlows)
   })
 
-  it('20', () => {
+  it('21', () => {
     const parsedFlows = [
       {
         name: 'a',

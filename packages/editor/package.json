@@ -7,6 +7,7 @@
     "start": "yarn run exec start",
     "build:prod": "yarn run exec build:prod",
     "test": "yarn run exec test",
+    "test:webpack": "yarn run exec test:webpack",
     "test:unit": "yarn run exec test:unit",
     "test:watch": "yarn run exec test:watch",
     "lint-staged": "yarn run exec lint-staged",

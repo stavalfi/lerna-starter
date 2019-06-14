@@ -48,6 +48,7 @@ module.exports = ({
             fix: false,
             // eslint import will remmember sometimes failures from last run and won't re-check imports.
             cache: false,
+            formatter: require('eslint-formatter-friendly'),
           },
         },
       ],
