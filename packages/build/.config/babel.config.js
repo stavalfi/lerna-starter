@@ -1,18 +1,20 @@
 module.exports = {
   presets: [
     [
+      '@babel/preset-env',
+      {
+        targets: {
+          node: 'current',
+        },
+      },
+    ],
+    [
       '@babel/preset-react',
       {
         modules: false,
       },
     ],
     '@babel/typescript',
-    [
-      '@babel/env',
-      {
-        modules: false,
-      },
-    ],
   ],
   plugins: [
     '@babel/proposal-object-rest-spread',

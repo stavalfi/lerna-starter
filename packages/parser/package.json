@@ -5,9 +5,10 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build:dev": "yarn run exec build:dev",
+    "build:dev": "yarn run exec build:dev --watch",
     "build:prod": "yarn run exec build:prod",
     "test": "yarn run exec test",
+    "test:webpack": "yarn run exec test:webpack",
     "test:unit": "yarn run exec test:unit",
     "test:watch": "yarn run exec test:watch",
     "lint-staged": "pkg-ok && yarn run exec lint-staged",
@@ -28,7 +29,6 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "karma": "^4.1.0",
     "pkg-ok": "^2.3.1"
   }
 }
