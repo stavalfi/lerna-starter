@@ -13,7 +13,7 @@
 - Eslint with Typescript
 - Prettier
 
-##### Main dependencies
+##### Main depesndencies
 
 - React 16.8.6
 - React-hot-loader 4.8.6
