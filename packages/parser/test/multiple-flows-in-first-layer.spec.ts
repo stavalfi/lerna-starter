@@ -547,156 +547,81 @@ describe('multiple-flows-in-first-layer', () => {
   })
 
   // todo: need to fix this test. it failed after moving to ts.
-  // it('12', () => {
-  //   const flowsConfig = (graph: UserFlow) => ({
-  //     splitters: {
-  //       extends: '_',
-  //     },
-  //     flows: [
-  //       {
-  //         name: 'e',
-  //         graph: ['a:b,c:d'],
-  //         default_flow_name: 'b',
-  //         extends_flows: [graph],
-  //       },
-  //     ],
-  //   })
-  //   const actual = {
-  //     name: 'composed-flow',
-  //     graph: ['flow0_a:flow0_d'],
-  //   }
-  //   const expected: ExpectedFlow[] = [
-  //     {
-  //       name: 'a',
-  //       graph: [{ a: [[], []] }],
-  //       defaultNodeIndex: 0,
-  //     },
-  //     {
-  //       name: 'b',
-  //       graph: [{ b: [[], []] }],
-  //       defaultNodeIndex: 0,
-  //     },
-  //     {
-  //       name: 'c',
-  //       graph: [{ c: [[], []] }],
-  //       defaultNodeIndex: 0,
-  //     },
-  //     {
-  //       name: 'd',
-  //       graph: [{ d: [[], []] }],
-  //       defaultNodeIndex: 0,
-  //     },
-  //     {
-  //       name: 'e',
-  //       graph: [{ e_a: [[], [1, 2]] }, { e_b: [[0], [3]] }, { e_c: [[0], [3]] }, { e_d: [[1, 2], []] }],
-  //       defaultNodeIndex: 1,
-  //     },
-  //     {
-  //       name: 'flow0',
-  //       graph: [
-  //         { flow0_e_a: [[], [1, 2]] },
-  //         { flow0_e_b: [[0], [3]] },
-  //         { flow0_e_c: [[0], [3]] },
-  //         { flow0_e_d: [[1, 2], []] },
-  //       ],
-  //       defaultNodeIndex: 1,
-  //       extendedFlowIndex: 4,
-  //     },
-  //     {
-  //       name: 'composed-flow',
-  //       graph: [
-  //         { 'composed-flow_flow0_e_a': [[], [1, 2, 3]] },
-  //         { 'composed-flow_flow0_e_b': [[0], [3]] },
-  //         { 'composed-flow_flow0_e_c': [[0], [3]] },
-  //         { 'composed-flow_flow0_e_d': [[0, 1, 2], []] },
-  //       ],
-  //       defaultNodeIndex: 1,
-  //       extendedFlowIndex: 4,
-  //     },
-  //   ]
-  //
-  //   const actualFlows = createFlows(actual, flowsConfig)
-  //   const expectedFlows = createExpected(expected, flowsConfig(actual))
-  //
-  //   assertEqualFlows(expectedFlows, actualFlows)
-  // })
+  it('12', () => {
+    const flowsConfig = (graph: UserFlow) => ({
+      splitters: {
+        extends: '_',
+      },
+      flows: [
+        {
+          name: 'e',
+          graph: ['a:b,c:d'],
+          default_flow_name: 'b',
+          extends_flows: [graph],
+        },
+      ],
+    })
+    const actual = {
+      name: 'composed-flow',
+      graph: ['flow0_a:flow0_d'],
+    }
+    const expected: ExpectedFlow[] = [
+      {
+        name: 'a',
+        graph: [{ a: [[], []] }],
+        defaultNodeIndex: 0,
+      },
+      {
+        name: 'b',
+        graph: [{ b: [[], []] }],
+        defaultNodeIndex: 0,
+      },
+      {
+        name: 'c',
+        graph: [{ c: [[], []] }],
+        defaultNodeIndex: 0,
+      },
+      {
+        name: 'd',
+        graph: [{ d: [[], []] }],
+        defaultNodeIndex: 0,
+      },
+      {
+        name: 'e',
+        graph: [{ e_a: [[], [1, 2]] }, { e_b: [[0], [3]] }, { e_c: [[0], [3]] }, { e_d: [[1, 2], []] }],
+        defaultNodeIndex: 1,
+      },
+      {
+        name: 'flow0',
+        graph: [
+          { flow0_e_a: [[], [1, 2]] },
+          { flow0_e_b: [[0], [3]] },
+          { flow0_e_c: [[0], [3]] },
+          { flow0_e_d: [[1, 2], []] },
+        ],
+        defaultNodeIndex: 1,
+        extendedFlowIndex: 4,
+      },
+      {
+        name: 'composed-flow',
+        graph: [
+          { 'composed-flow_flow0_e_a': [[], [1, 2, 3]] },
+          { 'composed-flow_flow0_e_b': [[0], [3]] },
+          { 'composed-flow_flow0_e_c': [[0], [3]] },
+          { 'composed-flow_flow0_e_d': [[0, 1, 2], []] },
+        ],
+        defaultNodeIndex: 1,
+        extendedFlowIndex: 4,
+      },
+    ]
 
-  // it('13', () => {
-  //   const splitters = {
-  //     extends: '_',
-  //     identifier: '/',
-  //   };
-  //   const flowsConfig = graph => ({
-  //     splitters,
-  //     flows: [
-  //       {
-  //         name: 'e',
-  //         graph: ['a:b,c:d'],
-  //         default_flow_name: 'b',
-  //         extends_flows: [graph],
-  //       },
-  //     ],
-  //   });
-  //   const actual = {
-  //     graph: ['flow0/i1:flow0/i2'],
-  //   };
-  //   const expected: ExpectedFlow[] = [
-  //     {
-  //       name: 'a',
-  //       graph: [{a: [[], []]}],
-  //       defaultNodeIndex: 0,
-  //     },
-  //     {
-  //       name: 'b',
-  //       graph: [{b: [[], []]}],
-  //       defaultNodeIndex: 0,
-  //     },
-  //     {
-  //       name: 'c',
-  //       graph: [{c: [[], []]}],
-  //       defaultNodeIndex: 0,
-  //     },
-  //     {
-  //       name: 'd',
-  //       graph: [{d: [[], []]}],
-  //       defaultNodeIndex: 0,
-  //     },
-  //     {
-  //       graph: [{e_a: [[], [1, 2]]}, {e_b: [[0], [3]]}, {e_c: [[0], [3]]}, {e_d: [[1, 2], []]}],
-  //       defaultNodeIndex: 1,
-  //     },
-  //     {
-  //       name: 'flow0',
-  //       graph: [
-  //         {flow0_e_a: [[], [1, 2]]},
-  //         {flow0_e_b: [[0], [3]]},
-  //         {flow0_e_c: [[0], [3]]},
-  //         {flow0_e_d: [[1, 2], []]},
-  //       ],
-  //       defaultNodeIndex: 1,
-  //     },
-  //     {
-  //       graph: [
-  //         {'flow0_e_a/i1': [[], [1, 2]]}, // 0
-  //         {'flow0_e_b/i1': [[0], [3, 4]]}, // 1
-  //         {'flow0_e_c/i1': [[0], [3]]}, // 2
-  //         {'flow0_e_d/i1': [[1, 2], []]}, // 3
-  //         {'flow0_e_a/i2': [[1], [5, 6]]}, // 4
-  //         {'flow0_e_b/i2': [[4], [7]]}, // 5
-  //         {'flow0_e_c/i2': [[4], [7]]}, // 6
-  //         {'flow0_e_d/i2': [[5, 6], []]}, // 7
-  //       ],
-  //       defaultNodeIndex: 1,
-  //     },
-  //   ];
-  //
-  //   const actualFlows = createFlows(actual, flowsConfig);
-  //   const expectedFlows = createExpected(expected, flowsConfig(actual));
-  //
-  //   // assertEqualFlows(expectedFlows, actualFlows);
-  // });
+    const actualFlows = createFlows(actual, flowsConfig)
+    const expectedFlows = createExpected(expected, flowsConfig(actual))
 
-  it('14', () => {
+    assertEqualFlows(expectedFlows, actualFlows)
+  })
+
+  it('13', () => {
     const flowsConfig = (graph: UserFlow) => ({
       splitters: {
         extends: '_',
