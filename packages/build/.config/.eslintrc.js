@@ -40,7 +40,7 @@ module.exports = {
     'no-debugger': 1,
     'no-underscore-dangle': 0,
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': ['warn', { vars: 'local', args: 'none', ignoreRestSiblings: true }],
+    '@typescript-eslint/no-unused-vars': ['error', { vars: 'local', args: 'none', ignoreRestSiblings: true }],
     'no-use-before-define': 0,
     'prefer-template': 1,
     'react/jsx-no-undef': 1,
