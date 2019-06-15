@@ -1,7 +1,7 @@
 import { assertEqualFlows, createFlows, createExpected, declareFlows, ExpectedFlow } from 'utils/utils'
 import { UserFlow } from 'types'
 
-describe('circle123', () => {
+describe('circle', () => {
   const flowsConfig = (graph: UserFlow) => ({
     splitters: {
       extends: '_',

@@ -1,8 +1,6 @@
 const path = require('path')
-const _flatMap = require('lodash/flatMap')
-const glob = require('glob')
 
-const { isWebApp, packageDirectoryName, filesExt, testFilesExt } = require('./constants')
+const { isWebApp, packageDirectoryName } = require('./constants')
 
 const currentPackageRootPath = path.resolve(__dirname, '..', '..')
 const packagesPath = path.resolve(currentPackageRootPath, '..')
@@ -17,7 +15,6 @@ const appEntryFilePaths = [path.resolve(srcPath, isWebApp ? 'index.tsx' : 'index
 const distPath = path.join(packageJsonFolderPath, 'dist')
 const babelRcPath = path.join(configFolderPath, 'babel.config.js')
 const jestFolderPath = path.join(configFolderPath, 'jest')
-const jestTransformerFilePath = path.join(jestFolderPath, 'jestPreprocess.js')
 const jestConfigFilePath = path.join(jestFolderPath, 'jest.config.js')
 const testPolyfillsFilePath = path.join(jestFolderPath, 'polyfills.js')
 const eslintRcPath = path.join(configFolderPath, '.eslintrc.js')
@@ -31,12 +28,8 @@ const testPolyfillFilePath = path.resolve(mainTestsFolderPath, 'utils', 'import-
 
 const resolveModulesPathsArray = [srcPath, mainTestsFolderPath, nodeModulesPath, mainNodeModulesPath]
 const allTestsFolders = [srcPath, mainTestsFolderPath]
-const allTestFilesPathsArray = _flatMap(allTestsFolders, testFolderPath =>
-  glob.sync(`${testFolderPath}/**/*.${testFilesExt}.ts`, {}),
-)
 
 module.exports = {
-  allTestFilesPathsArray,
   testPolyfillsFilePath,
   jestConfigFilePath,
   packagesPath,
@@ -44,7 +37,6 @@ module.exports = {
   libTsconfigFilePath,
   srcPath,
   babelRcPath,
-  jestTransformerFilePath,
   nodeModulesPath,
   linterTsconfigPath,
   mainNodeModulesPath,
