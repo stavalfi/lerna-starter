@@ -27,10 +27,8 @@ module.exports = {
       modulePaths: resolveModulesPathsArray,
       testRegex: [`./*.spec.js$`, `./*.spec.ts$`],
       roots: [mainTestsFolderPath, srcPath],
-      testPathIgnorePatterns: [`coverage`, 'node_modules'],
+      testPathIgnorePatterns: ['node_modules'],
       setupFiles: [testPolyfillsFilePath],
-      moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-      collectCoverageFrom: [`${srcPath}/*.{ts,tsx,js,jsx,json}`],
       globals: {
         'ts-jest': {
           tsConfig: linterTsconfigPath,

@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "webpack-dev-server --hot --env.devServer --config .config/webpack/webpack.config.js",
-    "build:dev": "webpack --mode development --config .config/webpack/webpack.config.js",
-    "build:prod": "webpack --mode production --config .config/webpack/webpack.config.js",
-    "test": "yarn run test:unit",
-    "test:unit": "jest --config ./.config/jest/jest.config.js",
-    "test:watch": "yarn run test --watch",
-    "lint-staged": "lint-staged --config .config/lint-staged.config.js"
+    "b:start": "webpack-dev-server --hot --env.devServer --config .config/webpack/webpack.config.js",
+    "b:build:dev": "webpack --mode development --config .config/webpack/webpack.config.js",
+    "b:build:prod": "webpack --mode production --config .config/webpack/webpack.config.js",
+    "b:test": "yarn run b:test:unit",
+    "b:test:unit": "jest --config ./.config/jest/jest.config.js",
+    "b:test:watch": "yarn run b:test --watch",
+    "b:lint-staged": "lint-staged --config .config/lint-staged.config.js"
   },
   "keywords": [],
   "author": "",

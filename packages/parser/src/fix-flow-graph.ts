@@ -201,10 +201,12 @@ function transformToArrayGraph(head: AlgorithmNode): Node[] {
   let i = 0
 
   function addIndexes(pos: AlgorithmNode) {
-    visited.set(pos, true)
-    pos.index = i++
-    graph.push(pos)
-    pos.children.filter(child => !visited.get(child)).forEach(child => addIndexes(child))
+    if (!visited.get(pos)) {
+      visited.set(pos, true)
+      graph.push(pos)
+      pos.index = i++
+      pos.children.filter(child => !visited.get(child)).forEach(child => addIndexes(child))
+    }
   }
 
   addIndexes(head)

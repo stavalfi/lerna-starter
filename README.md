@@ -1,7 +1,6 @@
 # A Full-Featured Lerna Starter
 
 [![CircleCI](https://circleci.com/gh/stavalfi/lerna-starter/tree/master.svg?style=svg)](https://circleci.com/gh/stavalfi/lerna-starter/tree/master)
-[![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest) [![jest](https://jestjs.io/img/jest-badge.svg)](https://github.com/facebook/jest)
 
 ##### Main devDependencies
 
@@ -14,7 +13,7 @@
 - Eslint with Typescript
 - Prettier
 
-##### Main dependencies
+##### Main depesndencies
 
 - React 16.8.6
 - React-hot-loader 4.8.6

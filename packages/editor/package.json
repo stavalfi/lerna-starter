@@ -4,12 +4,12 @@
   "description": "",
   "main": "dist/index.html",
   "scripts": {
-    "start": "yarn run exec start",
-    "build:prod": "yarn run exec build:prod",
-    "test": "yarn run exec test",
-    "test:unit": "yarn run exec test:unit",
-    "test:watch": "yarn run exec test:watch",
-    "lint-staged": "yarn run exec lint-staged",
+    "start": "yarn run exec b:start",
+    "build:prod": "yarn run exec b:build:prod",
+    "test": "yarn run exec b:test",
+    "test:unit": "yarn run exec b:test:unit",
+    "test:watch": "yarn run exec b:test:watch",
+    "lint-staged": "yarn run exec b:lint-staged",
     "clean": "rm -rf dist",
     "clean:all": "yarn run clean && rm -rf node_modules",
     "exec": "WEBAPP=true FOLDER=editor yarn workspace @flow/build"
