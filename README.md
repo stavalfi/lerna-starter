@@ -1,3 +1,7 @@
+# Go to https://github.com/stavalfi/jstream to see the up 2 date version of this repo.
+ (easier to maintain this kind of lib when I actually using it)
+
+
 # A Full-Featured Lerna Starter
 
 [![CircleCI](https://circleci.com/gh/stavalfi/lerna-starter/tree/master.svg?style=svg)](https://circleci.com/gh/stavalfi/lerna-starter/tree/master)
