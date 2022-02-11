@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@types/deep-equal": "^1.0.1",
-    "karma": "^4.1.0",
+    "karma": "^6.3.14",
     "pkg-ok": "^2.3.1"
   }
 }
